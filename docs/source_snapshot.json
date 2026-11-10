@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-10",
+  "source_repository": "https://github.com/Doribelove/autolabor-robot-nav",
+  "source_path": "src/navigation_arena/igo_local_planner",
+  "source_head": "b6c37394d61da3b8af2f0ebe213e2685c122cd9f",
+  "snapshot": "working tree including uncommitted updates",
+  "excluded_project_integration_tests": [
+    "check_launch.py",
+    "test_coverage_adapter.py"
+  ],
+  "files": [
+    {
+      "path": "CMakeLists.txt",
+      "sha256": "af44eee114b02cfa2b29b1d968ee72c37d98fdcf7dcdefe1cc5527ab52b5a009"
+    },
+    {
+      "path": "cfg/IGO.cfg",
+      "sha256": "658984d175ea6453da436a80549f771608caece6211fd313a9f407ec333a2401"
+    },
+    {
+      "path": "config/igo.yaml",
+      "sha256": "f9fa8bcab2ce5e31aeb020f773ebddcf6757b680f2e3878ac908e05e31fb6b6c"
+    },
+    {
+      "path": "igo_plugin.xml",
+      "sha256": "3faf13d9833f46fcecb318fccecd020074f92f7db27eb72abff2517c1b91a5b4"
+    },
+    {
+      "path": "include/igo_local_planner/core.h",
+      "sha256": "94c4c7fe69781390d3296af5c7bf6b6d9fe5c7d4a70768776519d6222895730b"
+    },
+    {
+      "path": "include/igo_local_planner/ros_planner.h",
+      "sha256": "5f6f4770cbebb19a281342f8634710c61ef1d0e1562076aafb252b0f5e538664"
+    },
+    {
+      "path": "package.xml",
+      "sha256": "3617ce5f68dbd53986325c0f752ea688dc7362368ed5f6aaf77c669799035164"
+    },
+    {
+      "path": "scripts/ros_simulation.py",
+      "sha256": "544e31b614a43326f5710923cfb102e9ce46f9a80a8531edaa13668e5d48ff8d"
+    },
+    {
+      "path": "src/core.cpp",
+      "sha256": "1302dee22cb9788599fdcc9fc37f0efb87a857c8ff699f9661fe96ff42305811"
+    },
+    {
+      "path": "src/ros_planner.cpp",
+      "sha256": "222e517f9633115162be98f91f5fef879a5f774833f04390c7ded2991fbc52e7"
+    },
+    {
+      "path": "test/scenarios.cpp",
+      "sha256": "42c16323be3c3ea0d42517eba3f01951f0e6e2221a8655347f4d343ae4a1f583"
+    },
+    {
+      "path": "test/simulation.launch",
+      "sha256": "1e921c46db4932653ba8cb06aefd5c791533a5aeaf0dc4b73b7df63699faef46"
+    }
+  ]
+}

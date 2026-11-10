@@ -1,0 +1,174 @@
+{
+  "date": "2026-11-10",
+  "ros": "ROS 1 Noetic",
+  "architecture": "aarch64",
+  "compiler": "GNU C++14, Release",
+  "hardware_motion": false,
+  "validation_scope": "standalone package build and install; CPU kinematic scenarios and isolated ROS integration simulation",
+  "checks": {
+    "catkin_build": "passed",
+    "catkin_install": "passed",
+    "core_scenarios_ctest": "passed",
+    "plugin_load_ctest": "passed",
+    "installed_plugin_load": "passed",
+    "shared_library_unresolved_symbols": false
+  },
+  "source_core_sha256": "1302dee22cb9788599fdcc9fc37f0efb87a857c8ff699f9661fe96ff42305811",
+  "source_header_sha256": "94c4c7fe69781390d3296af5c7bf6b6d9fe5c7d4a70768776519d6222895730b",
+  "core_scenarios": [
+    {
+      "case": "delayed_stop_1",
+      "settled": 1,
+      "x": 2.11089,
+      "overshoot": 0,
+      "wrong_gear": 0
+    },
+    {
+      "case": "delayed_stop_-1",
+      "settled": 1,
+      "x": -2.11184,
+      "overshoot": 0,
+      "wrong_gear": 0
+    },
+    {
+      "case": "straight_forward",
+      "reached": true,
+      "steps": 105,
+      "x": 4.75176,
+      "y": 0,
+      "yaw": 0,
+      "distance": 4.75176,
+      "peak_cross_track": 0.0485928,
+      "forward_commands": 105,
+      "reverse_commands": 0,
+      "p50_ms": 9.01496,
+      "p95_ms": 19.4506,
+      "max_ms": 19.8611
+    },
+    {
+      "case": "straight_reverse",
+      "reached": true,
+      "steps": 79,
+      "x": -1.75306,
+      "y": 0.0042955,
+      "yaw": -0.00566916,
+      "distance": 1.75309,
+      "peak_cross_track": 0.050074,
+      "forward_commands": 0,
+      "reverse_commands": 79,
+      "p50_ms": 7.40131,
+      "p95_ms": 11.0678,
+      "max_ms": 11.3524
+    },
+    {
+      "case": "forward_radius_2m",
+      "reached": true,
+      "steps": 72,
+      "x": 1.74504,
+      "y": 1.05737,
+      "yaw": 1.12778,
+      "distance": 2.16106,
+      "peak_cross_track": 0.0455441,
+      "forward_commands": 72,
+      "reverse_commands": 0,
+      "p50_ms": 9.03477,
+      "p95_ms": 15.7692,
+      "max_ms": 18.276
+    },
+    {
+      "case": "reverse_radius_2m",
+      "reached": true,
+      "steps": 91,
+      "x": -1.73923,
+      "y": -1.05947,
+      "yaw": 1.12428,
+      "distance": 2.13227,
+      "peak_cross_track": 0.0535291,
+      "forward_commands": 0,
+      "reverse_commands": 91,
+      "p50_ms": 10.3404,
+      "p95_ms": 15.6496,
+      "max_ms": 15.7629
+    },
+    {
+      "case": "automatic_reverse",
+      "reached": true,
+      "steps": 79,
+      "x": -1.75302,
+      "y": 0.00247744,
+      "yaw": -0.0245719,
+      "distance": 1.75307,
+      "peak_cross_track": 0.0500307,
+      "forward_commands": 0,
+      "reverse_commands": 79,
+      "p50_ms": 14.8907,
+      "p95_ms": 22.3188,
+      "max_ms": 23.7699
+    },
+    {
+      "case": "local_obstacle_detour",
+      "reached": true,
+      "steps": 142,
+      "x": 6.75323,
+      "y": 0.0287013,
+      "yaw": 0.014957,
+      "distance": 7.07745,
+      "peak_cross_track": 0.821663,
+      "forward_commands": 142,
+      "reverse_commands": 0,
+      "p50_ms": 24.1128,
+      "p95_ms": 75.0358,
+      "max_ms": 86.3002
+    },
+    {
+      "tests": "passed",
+      "hardware_motion": false
+    }
+  ],
+  "ros_simulation": {
+    "results": [
+      {
+        "case": "forward_goal",
+        "action_state": 3,
+        "elapsed_s": 7.002025085006608,
+        "pose": [
+          2.8043581972864677,
+          0.011375262862906037,
+          0.14760642725112116
+        ],
+        "position_error_m": 0.19597222143508217
+      },
+      {
+        "case": "reverse_goal",
+        "action_state": 3,
+        "elapsed_s": 9.502898405015003,
+        "pose": [
+          1.176091336054205,
+          -0.08124852573478428,
+          -0.06342782808106513
+        ],
+        "position_error_m": 0.19393164148078268
+      },
+      {
+        "case": "automatic_gear",
+        "action_state": 3,
+        "elapsed_s": 9.901827952999156,
+        "pose": [
+          -0.810420348255458,
+          -0.06285006069082742,
+          -0.07540961682336741
+        ],
+        "position_error_m": 0.19972624886184226
+      }
+    ],
+    "errors": [],
+    "controller_callback_ms": {
+      "count": 261,
+      "p50": 20.639,
+      "p95": 28.2677,
+      "max": 32.7509
+    },
+    "xy_tolerance_m": 0.2,
+    "yaw_tolerance_rad": 0.25
+  }
+}

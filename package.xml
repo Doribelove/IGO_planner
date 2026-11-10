@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>igo_local_planner</name><version>0.1.0</version>
+  <description>Gaussian information-geometric optimization for Ackermann local control.</description>
+  <maintainer email="111175613+Doribelove@users.noreply.github.com">Doribelove</maintainer>
+  <license>BSD-3-Clause</license>
+  <url type="repository">https://github.com/Doribelove/IGO_planner</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend><depend>nav_core</depend><depend>costmap_2d</depend>
+  <depend>pluginlib</depend><depend>tf2</depend><depend>tf2_ros</depend><depend>tf2_geometry_msgs</depend>
+  <depend>nav_msgs</depend><depend>geometry_msgs</depend><depend>std_msgs</depend>
+  <depend>dynamic_reconfigure</depend>
+  <!-- Runtime dependencies of the installed standalone simulation example. -->
+  <exec_depend>actionlib</exec_depend><exec_depend>move_base_msgs</exec_depend>
+  <exec_depend>move_base</exec_depend><exec_depend>navfn</exec_depend>
+  <exec_depend>rospy</exec_depend><exec_depend>roslaunch</exec_depend>
+  <export><nav_core plugin="${prefix}/igo_plugin.xml"/></export>
+</package>

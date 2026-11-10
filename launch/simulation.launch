@@ -1,0 +1,46 @@
+<launch>
+  <!-- Start with: rosrun igo_local_planner run_simulation.py -->
+  <arg name="output" default="/tmp/igo_simulation"/>
+  <node pkg="igo_local_planner" type="ros_simulation.py" name="igo_simulated_vehicle" output="screen" required="true">
+    <param name="output" value="$(arg output)"/>
+  </node>
+  <node pkg="move_base" type="move_base" name="move_base" output="screen">
+    <param name="base_local_planner" value="igo_local_planner/IGOLocalPlannerROS"/>
+    <param name="base_global_planner" value="navfn/NavfnROS"/>
+    <param name="controller_frequency" value="10.0"/>
+    <param name="planner_frequency" value="1.0"/>
+    <param name="controller_patience" value="3.0"/>
+    <param name="recovery_behavior_enabled" value="false"/>
+    <rosparam file="$(find igo_local_planner)/config/igo.yaml"/>
+    <rosparam>
+      IGOLocalPlannerROS:
+        odom_topic: /odom
+        xy_goal_tolerance: 0.20
+        yaw_goal_tolerance: 0.25
+      global_costmap:
+        global_frame: map
+        robot_base_frame: base_link
+        update_frequency: 10.0
+        publish_frequency: 2.0
+        transform_tolerance: 0.5
+        footprint: [[1.22,0.40],[1.22,-0.40],[-0.52,-0.40],[-0.52,0.40]]
+        footprint_padding: 0.10
+        plugins: [{name: static, type: "costmap_2d::StaticLayer"}, {name: inflation, type: "costmap_2d::InflationLayer"}]
+        inflation: {inflation_radius: 0.6, cost_scaling_factor: 3.0}
+      local_costmap:
+        global_frame: map
+        robot_base_frame: base_link
+        update_frequency: 10.0
+        publish_frequency: 2.0
+        transform_tolerance: 0.5
+        rolling_window: true
+        width: 20.0
+        height: 20.0
+        resolution: 0.10
+        footprint: [[1.22,0.40],[1.22,-0.40],[-0.52,-0.40],[-0.52,0.40]]
+        footprint_padding: 0.10
+        plugins: [{name: static, type: "costmap_2d::StaticLayer"}, {name: inflation, type: "costmap_2d::InflationLayer"}]
+        inflation: {inflation_radius: 0.6, cost_scaling_factor: 3.0}
+    </rosparam>
+  </node>
+</launch>
