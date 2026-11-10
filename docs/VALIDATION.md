@@ -76,9 +76,10 @@ installed library: Forward and Reverse both SUCCEEDED, moving cancel CANCELED,
 Its binary SHA256 was
 `c09a6e15f83cf93b1b6935d20b81b0f3cddf4f7babe082db311bc97831a75114`.
 Build-path-sensitive logging/metadata can change binary hashes between builds;
-core source hashes are recorded in CORE_PROVENANCE.json. Documentation and
-CI publication setup were adjusted after the local build; implementation, test
-and script bytes stayed unchanged. This independent-source test was completed before authorized source publication.
+core source hashes are recorded in CORE_PROVENANCE.json. For the initial
+publication at bb30c84, documentation and CI setup were adjusted after that
+local build; implementation, test and script bytes stayed unchanged in that
+initial step. A subsequent source-preparation fix is recorded below. This independent-source test was completed before authorized source publication.
 Source-branch publication is a separate step and is not an official binary
 distribution.
 
@@ -112,3 +113,24 @@ as passes.
 Raw build/test XML, ControllerServer action/command logs, rosdep result and
 machine-readable summary accompany the local deliverable. See README for
 reproduction and RELEASE_CHECKLIST.md for the remaining publication stages.
+
+## Source-preparation regression fix before review
+
+The source helper was hardened after the initial published validation: generated
+source now excludes `.git`, `.hg`, and `.svn` recursively, as well as the existing
+build/cache exclusions. This prevents repository-control metadata from being
+carried into a source bundle. Initial CI did not upload its generated source
+directory as an artifact. No real Git credential file was read for this fix.
+
+Four new Python regressions use deliberately synthetic metadata. They cover
+both package layouts, nested VCS directories and worktree-style `.git` files,
+cache exclusion, core/provenance hashes, unchanged inputs, output preservation
+and rejection of output within the source tree. The old filter was checked as
+a negative control and the regression detected its metadata inclusion.
+
+Two clean Ubuntu24.04.5/Jazzy builds passed: the updated candidate and a bundle
+generated from a complete root-layout fixture containing fake metadata. Each
+passed 4/4 CTest entries, including the unchanged 56 controller gtests and the
+new four Python cases. Controller/core/previous gtest bytes stayed unchanged.
+The later commit's actual remote CI remains the authority for its published
+build, ControllerServer smoke and independently generated-source checks.

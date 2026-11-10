@@ -40,7 +40,7 @@ def main():
         package,
         output,
         ignore=shutil.ignore_patterns(
-            "build", "install", "log", "__pycache__", "*.pyc"
+            ".git", ".hg", ".svn", "build", "install", "log", "__pycache__", "*.pyc"
         ),
     )
     hashes = {}

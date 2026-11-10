@@ -25,6 +25,15 @@ colcon test --paths . --event-handlers console_direct+
 colcon test-result --verbose
 ```
 
+`test_prepare_release.py` is a standard-library Python unittest registered
+with CTest. It uses synthetic VCS metadata to check both source layouts,
+metadata/cache exclusion, core provenance, source preservation and output
+protection. It can also run without ROS:
+
+```bash
+python3 test/test_prepare_release.py -v
+```
+
 For an installed-package plugin check, source only that workspace's install
 setup and run `ros2 run igo_nav2_controller igo_nav2_plugin_load_check`.
 Do not claim the tests passed merely because this source compiles or the

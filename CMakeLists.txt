@@ -62,6 +62,9 @@ install(TARGETS igo_nav2_plugin_load_check RUNTIME DESTINATION lib/${PROJECT_NAM
 
 if(BUILD_TESTING)
   find_package(ament_cmake_gtest REQUIRED)
+  find_package(Python3 REQUIRED COMPONENTS Interpreter)
+  add_test(NAME test_prepare_release
+    COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/test/test_prepare_release.py")
   add_executable(igo_core_scenarios "${IGO_CORE_ROOT}/test/scenarios.cpp")
   target_link_libraries(igo_core_scenarios PRIVATE igo_core)
   add_test(NAME igo_core_scenarios COMMAND igo_core_scenarios)

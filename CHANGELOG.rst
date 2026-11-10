@@ -8,3 +8,5 @@ Changelog for package igo_nav2_controller
 * Ament/pluginlib export, lifecycle integration, speed-limit and cancel handling.
 * Explicitly separate ROS2 validation and release preparation from ROS1 history.
 * No upstream publication, hardware acceptance or ROS distribution release claimed.
+* Exclude VCS metadata from prepared source and test both package layouts,
+  source hashes, input preservation and output guards with synthetic fixtures.
