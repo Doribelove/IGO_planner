@@ -1,0 +1,71 @@
+{
+  "ros_domain_id": 199,
+  "namespace": "/igo_smoke_2_502eeb25",
+  "costmap": "12x12m free rolling grid, inflation-only layer, no sensors",
+  "plant": "ideal commanded-velocity kinematics; no actuator dynamics/slip/obstacle coverage",
+  "evidence_directory": "/work/results/standalone-controller-smoke",
+  "plugin_prefix": "/work/runtime/standalone-install/igo_nav2_controller",
+  "plugin_sha256": "c09a6e15f83cf93b1b6935d20b81b0f3cddf4f7babe082db311bc97831a75114",
+  "cases": [
+    {
+      "case": "Forward",
+      "status": 4,
+      "error_code": 0,
+      "error_msg": "",
+      "seconds": 4.51753787099733,
+      "target": [
+        1.8000000000000003,
+        0.0
+      ],
+      "final_pose": [
+        1.6718376966070334,
+        -0.06415552877568804,
+        -0.038380046495695944
+      ],
+      "position_error": 0.14332308914993083,
+      "final_speed": 0.0,
+      "commands": 39,
+      "min_v": 0.0,
+      "max_v": 0.5
+    },
+    {
+      "case": "Reverse",
+      "status": 4,
+      "error_code": 0,
+      "error_msg": "",
+      "seconds": 6.017320548999123,
+      "target": [
+        0.6725741201871701,
+        -0.025784904066360942
+      ],
+      "final_pose": [
+        0.8019354983725607,
+        -0.035590106490178415,
+        -0.0749306732959675
+      ],
+      "position_error": 0.1297324483720079,
+      "final_speed": 0.0,
+      "commands": 54,
+      "min_v": -0.3,
+      "max_v": -0.0
+    },
+    {
+      "case": "moving_cancel",
+      "status": 5,
+      "error_code": 0,
+      "speed_at_request": 0.5,
+      "final_speed": 0.0,
+      "seconds": 2.517334292999294,
+      "final_pose": [
+        1.4995784170610067,
+        -0.09241248288031853,
+        -0.07698267296084144
+      ],
+      "commands": 19,
+      "zero_command_after_request_s": 0.2967248599998129
+    }
+  ],
+  "passed": true,
+  "command_count": 113,
+  "server_returncode": 0
+}

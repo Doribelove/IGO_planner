@@ -1,0 +1,7 @@
+<library path="igo_nav2_controller">
+  <class name="igo_nav2_controller::IGOController"
+         type="igo_nav2_controller::IGOController"
+         base_class_type="nav2_core::Controller">
+    <description>CPU IGO controller with Ackermann forward/reverse dynamics and footprint/stopping-tail collision checks.</description>
+  </class>
+</library>

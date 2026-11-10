@@ -1,0 +1,9 @@
+{"case":"delayed_stop_1","settled":1,"x":2.11089,"overshoot":0,"wrong_gear":0}
+{"case":"delayed_stop_-1","settled":1,"x":-2.11184,"overshoot":0,"wrong_gear":0}
+{"case":"straight_forward","reached":true,"steps":105,"x":4.75176,"y":0,"yaw":0,"distance":4.75176,"peak_cross_track":0.0485928,"forward_commands":105,"reverse_commands":0,"p50_ms":17.7812,"p95_ms":43.7565,"max_ms":71.6632}
+{"case":"straight_reverse","reached":true,"steps":79,"x":-1.75306,"y":0.0042955,"yaw":-0.00566916,"distance":1.75309,"peak_cross_track":0.050074,"forward_commands":0,"reverse_commands":79,"p50_ms":5.66854,"p95_ms":25.222,"max_ms":29.1985}
+{"case":"forward_radius_2m","reached":true,"steps":72,"x":1.74504,"y":1.05737,"yaw":1.12778,"distance":2.16106,"peak_cross_track":0.0455441,"forward_commands":72,"reverse_commands":0,"p50_ms":8.19921,"p95_ms":13.802,"max_ms":15.9266}
+{"case":"reverse_radius_2m","reached":true,"steps":91,"x":-1.73923,"y":-1.05947,"yaw":1.12428,"distance":2.13227,"peak_cross_track":0.0535291,"forward_commands":0,"reverse_commands":91,"p50_ms":8.31359,"p95_ms":16.2727,"max_ms":19.8276}
+{"case":"automatic_reverse","reached":true,"steps":79,"x":-1.75302,"y":0.00247744,"yaw":-0.0245719,"distance":1.75307,"peak_cross_track":0.0500307,"forward_commands":0,"reverse_commands":79,"p50_ms":12.5751,"p95_ms":23.6515,"max_ms":25.2108}
+{"case":"local_obstacle_detour","reached":true,"steps":142,"x":6.75323,"y":0.0287013,"yaw":0.014957,"distance":7.07745,"peak_cross_track":0.821663,"forward_commands":142,"reverse_commands":0,"p50_ms":25.067,"p95_ms":75.1689,"max_ms":146.586}
+{"tests":"passed","hardware_motion":false}

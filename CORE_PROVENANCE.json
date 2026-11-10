@@ -1,0 +1,12 @@
+{
+  "package": "igo_nav2_controller",
+  "version": "0.1.0",
+  "upstream_repository": "https://github.com/Doribelove/IGO_planner",
+  "original_core_commit": "ac87ef450bde039564b2d555cc27f53b7c5c7221",
+  "core_sha256": {
+    "include/igo_local_planner/core.h": "94c4c7fe69781390d3296af5c7bf6b6d9fe5c7d4a70768776519d6222895730b",
+    "src/core.cpp": "1302dee22cb9788599fdcc9fc37f0efb87a857c8ff699f9661fe96ff42305811",
+    "test/scenarios.cpp": "42c16323be3c3ea0d42517eba3f01951f0e6e2221a8655347f4d343ae4a1f583"
+  },
+  "publication_performed": false
+}

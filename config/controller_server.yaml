@@ -1,0 +1,63 @@
+# Merge these settings into an existing Nav2 Jazzy configuration.
+# Keep your own local_costmap, TF, localization, planner and chassis settings.
+# This is a controller fragment, not a complete robot bringup.
+controller_server:
+  ros__parameters:
+    controller_frequency: 10.0
+    # Preserve actual low speed feedback. Default Nav2 thresholds can hide
+    # reverse or goal-braking motion on an Ackermann base.
+    min_x_velocity_threshold: 0.001
+    min_y_velocity_threshold: 0.001
+    min_theta_velocity_threshold: 0.001
+    progress_checker_plugins: ["progress_checker"]
+    goal_checker_plugins: ["goal_checker"]
+    controller_plugins: ["FollowPath"]
+    progress_checker:
+      plugin: "nav2_controller::SimpleProgressChecker"
+      required_movement_radius: 0.2
+      movement_time_allowance: 20.0
+    goal_checker:
+      plugin: "nav2_controller::StoppedGoalChecker"
+      xy_goal_tolerance: 0.2
+      yaw_goal_tolerance: 0.25
+      trans_stopped_velocity: 0.03
+      rot_stopped_velocity: 0.03
+      stateful: true
+    FollowPath:
+      plugin: "igo_nav2_controller::IGOController"
+      max_vel_x: 0.8
+      max_vel_x_backwards: 0.3
+      max_vel_theta: 0.6
+      acc_lim_x: 2.0
+      acc_lim_theta: 0.5
+      decel_lim_x: 0.18
+      stopping_delay: 1.2
+      wheelbase: 0.65
+      min_turning_radius: 1.35
+      max_steering_rate: 0.6
+      steering_change_weight: 0.5
+      xy_goal_tolerance: 0.2
+      yaw_goal_tolerance: 0.25
+      max_global_plan_lookahead_dist: 4.0
+      motion_direction_mode: 0
+      allow_init_with_backwards_motion: true
+      global_plan_overwrite_orientation: true
+      treat_unknown_as_obstacle: true
+      goal_yaw_required: true
+      horizon: 4.0
+      knots: 10
+      samples: 48
+      iterations: 4
+      mean_rate: 0.65
+      variance_rate: 0.25
+      elite_fraction: 0.25
+      path_weight: 5.0
+      heading_weight: 1.0
+      obstacle_weight: 5.0
+      progress_weight: 5.0
+      transform_tolerance: 0.1
+      steering_topic: ""
+      steering_timeout: 0.5
+      max_robot_pose_search_dist: 6.0
+      max_path_distance: 2.0
+      max_plan_poses: 100000
