@@ -1,0 +1,55 @@
+name: Nav2 Jazzy
+permissions:
+  contents: read
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  jazzy:
+    runs-on: ubuntu-24.04
+    container: ros:jazzy-ros-base-noble
+    env:
+      ROS_DISTRO: jazzy
+      ROS_DOMAIN_ID: 73
+      ROS_LOCALHOST_ONLY: 1
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install declared dependencies
+        shell: bash
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends python3-colcon-common-extensions python3-rosdep
+          rosdep update --rosdistro jazzy
+          rosdep install --from-paths . --ignore-src --rosdistro jazzy -y
+      - name: Build, install and test Jazzy package
+        shell: bash
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          colcon build --paths . --build-base /tmp/igo-build --install-base /tmp/igo-install --cmake-args -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
+          source /tmp/igo-install/setup.bash
+          colcon test --paths . --build-base /tmp/igo-build --event-handlers console_direct+ --return-code-on-test-failure
+          colcon test-result --test-result-base /tmp/igo-build --verbose
+      - name: Real ControllerServer synthetic smoke
+        shell: bash
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          source /tmp/igo-install/setup.bash
+          python3 scripts/controller_server_smoke.py --domain 198 --output /tmp/igo-controller-smoke
+      - name: Verify standalone release source
+        shell: bash
+        run: |
+          python3 scripts/prepare_release.py --output /tmp/igo-release-source
+          source /opt/ros/jazzy/setup.bash
+          colcon build --paths /tmp/igo-release-source --build-base /tmp/igo-release-build --install-base /tmp/igo-release-install --cmake-args -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
+          source /tmp/igo-release-install/setup.bash
+          colcon test --paths /tmp/igo-release-source --build-base /tmp/igo-release-build --event-handlers console_direct+ --return-code-on-test-failure
+          colcon test-result --test-result-base /tmp/igo-release-build --verbose
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: jazzy-test-results
+          path: |
+            /tmp/igo-build/**/test_results/**/*.xml
+            /tmp/igo-controller-smoke/result.json
+            /tmp/igo-controller-smoke/controller_server.log
