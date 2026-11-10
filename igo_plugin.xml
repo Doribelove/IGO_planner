@@ -1,5 +1,0 @@
-<library path="lib/libigo_local_planner">
-  <class name="igo_local_planner/IGOLocalPlannerROS" type="igo_local_planner::IGOLocalPlannerROS" base_class_type="nav_core::BaseLocalPlanner">
-    <description>Rank-based Gaussian IGO with Ackermann rollouts and full footprint collision checks.</description>
-  </class>
-</library>
