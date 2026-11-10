@@ -65,7 +65,8 @@ self-contained source build were checked. Full results and limits are in
 These are software/synthetic tests, not new-wrapper hardware validation,
 ROS certification, official binary distribution or Nav2 maintainer acceptance.
 ARM64, other ROS distros, actuator/brake behavior and long-duration tests remain
-unverified. The locally prepared GitHub workflow has not run on GitHub.
+unverified. Check this repository's GitHub Actions for the exact commit's remote CI status;
+the recorded local results do not by themselves imply a remote CI pass.
 
 The existing public issue tracker is
 https://github.com/Doribelove/IGO_planner/issues . Repository ownership and
@@ -73,5 +74,7 @@ maintainer contact/release decisions remain with the owner. No new long-term
 support commitment is made by this candidate.
 
 License: BSD-3-Clause, retained in LICENSE. Core provenance hashes are recorded
-in CORE_PROVENANCE.json. See docs/RELEASE_CHECKLIST.md for the distinct source,
+in CORE_PROVENANCE.json. Its publication_performed flag describes the source
+preparation helper, which does not publish; it is not the branch availability
+status. See docs/RELEASE_CHECKLIST.md for the distinct source,
 ROS Index, apt binary and optional Nav2-upstream steps.

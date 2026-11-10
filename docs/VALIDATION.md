@@ -76,10 +76,11 @@ installed library: Forward and Reverse both SUCCEEDED, moving cancel CANCELED,
 Its binary SHA256 was
 `c09a6e15f83cf93b1b6935d20b81b0f3cddf4f7babe082db311bc97831a75114`.
 Build-path-sensitive logging/metadata can change binary hashes between builds;
-core source hashes are recorded in CORE_PROVENANCE.json. Only this validation
-paragraph was updated after the build; implementation/test/script bytes stayed
-unchanged. This source is prepared locally, not yet on an authorized ROS2
-release branch or public distribution.
+core source hashes are recorded in CORE_PROVENANCE.json. Documentation and
+CI publication setup were adjusted after the local build; implementation, test
+and script bytes stayed unchanged. This independent-source test was completed before authorized source publication.
+Source-branch publication is a separate step and is not an official binary
+distribution.
 
 ## Corrections found during validation
 
@@ -100,7 +101,9 @@ as passes.
 - At the time of the local validation above, no remote commit/push, PR, tag,
   publication or new legal agreement had been performed. Any subsequent source
   publication is a separate step and does not change these test limits.
-- The CI workflow is defined locally but has not run on GitHub Actions.
+- The recorded local tests predate initial GitHub Actions execution. Check the
+  published commit's actual GitHub Actions result; these local results alone
+  are not evidence of a remote CI pass.
 - No ROS Index/apt release or Nav2-maintainer acceptance. The official Jazzy
   rosdistro distribution file checked on this date contained no IGO entry or
   Doribelove/IGO_planner source URL (blob
