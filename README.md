@@ -1,4 +1,17 @@
-# IGO 局部规划器
+# IGO 阿克曼局部规划器
+
+IGO（Information-Geometric Optimization）在 CPU 上优化阿克曼车辆的局部速度与曲率序列。本仓库分别提供 ROS 1 `move_base` 和 ROS 2 Nav2 接口，请按运行环境选择分支：
+
+| 运行环境 | 分支 | ROS 包名 | 接口与使用入口 |
+|---|---|---|---|
+| ROS 1 Noetic / catkin | [`main`](https://github.com/Doribelove/IGO_planner/tree/main) | `igo_local_planner` | `nav_core::BaseLocalPlanner`；见下文 |
+| Ubuntu 24.04 / ROS 2 Jazzy / colcon | [`ros2-jazzy`](https://github.com/Doribelove/IGO_planner/tree/ros2-jazzy) | `igo_nav2_controller` | `nav2_core::Controller`；[Jazzy 源码安装与验证](docs/ROS2_JAZZY.md) |
+
+**Using ROS 2 / Nav2? Check out `ros2-jazzy` and follow the [Jazzy source-build guide](docs/ROS2_JAZZY.md).** The default `main` branch contains the ROS 1 package.
+
+`igo_nav2_controller` 已于 2026-11-16 加入 [ROS Jazzy 源码登记](https://github.com/ros/rosdistro/pull/55324)。在 [ROS Index](https://index.ros.org/?pkgs=igo_nav2_controller&search_packages=true#jazzy) 中选择 Jazzy，搜索该包名；网站搜索随索引构建更新。当前通过源码构建安装，apt 二进制发布另行跟进。
+
+## ROS 1 Noetic 使用说明
 
 `igo_local_planner` 是面向阿克曼车辆的 ROS 1 `nav_core::BaseLocalPlanner` 插件，支持 ROS Noetic / catkin。它接收现有全局规划器的路径，在局部代价地图上使用对角高斯 IGO（Information-Geometric Optimization）优化速度和曲率序列，向 `move_base` 返回 `geometry_msgs/Twist`。
 
