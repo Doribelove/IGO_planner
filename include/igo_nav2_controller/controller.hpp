@@ -73,6 +73,7 @@ private:
   bool cancelling_{false};
   bool cancel_complete_{false};
   std::size_t cursor_{0};
+  double cursor_fraction_{0.0};
   std::size_t max_plan_poses_{100000};
   double transform_tolerance_{0.1};
   double steering_timeout_{0.5};
