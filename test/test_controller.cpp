@@ -544,6 +544,24 @@ TEST_F(ControllerTest, RobotTooFarFromPathIsRejected)
   EXPECT_THROW(command(poseAt(0.0, 4.0)), nav2_core::InvalidPath);
 }
 
+TEST_F(ControllerTest, SearchWindowAdvancesWithinSparsePathSegments)
+{
+  start({rclcpp::Parameter("FollowPath.max_robot_pose_search_dist", 1.0),
+    rclcpp::Parameter("FollowPath.max_path_distance", 0.25)});
+  nav_msgs::msg::Path path;
+  path.header.frame_id = "map";
+  path.poses = {poseAt(), poseAt(2.5), poseAt(5.0)};
+  controller_->setPlan(path);
+  for (double x = 0.0; x <= 3.5; x += 0.5) {
+    SCOPED_TRACE(x);
+    ASSERT_NO_THROW(command(poseAt(x)));
+  }
+
+  controller_->setPlan(path);
+  EXPECT_THROW(command(poseAt(2.0)), nav2_core::InvalidPath);
+  EXPECT_NO_THROW(command());
+}
+
 TEST_F(ControllerTest, StationaryGoalProducesZeroWithoutSpin)
 {
   start(); controller_->setPlan(line(1.0));

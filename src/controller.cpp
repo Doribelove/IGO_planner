@@ -355,6 +355,7 @@ void IGOController::clearPlan()
 {
   plan_ = nav_msgs::msg::Path();
   cursor_ = 0;
+  cursor_fraction_ = 0.0;
   goal_braking_ = false;
   cancelling_ = false;
   cancel_complete_ = false;
@@ -509,15 +510,21 @@ std::vector<State> IGOController::makeReference(
   std::size_t nearest = std::min(cursor_, transformed.size() - 1);
   State projected = transformed[nearest];
   double best = std::hypot(robot_x - projected.x, robot_y - projected.y);
-  double walked = 0.0;
+  double nearest_fraction = 0.0;
+  double remaining = max_robot_pose_search_dist_;
   for (std::size_t i = nearest; i + 1 < transformed.size(); ++i) {
     const auto & a = transformed[i];
     const auto & b = transformed[i + 1];
     const double dx = b.x - a.x;
     const double dy = b.y - a.y;
     const double length = std::hypot(dx, dy);
+    // Count the forward search window from the previous projection. A single
+    // sparse segment can span multiple windows before the segment index advances.
+    if (i == cursor_) {
+      remaining += cursor_fraction_ * length;
+    }
     const double max_t = length > 1e-9 ?
-      std::min(1.0, std::max(0.0, max_robot_pose_search_dist_ - walked) / length) : 1.0;
+      std::min(1.0, remaining / length) : 1.0;
     const double t = length > 1e-9 ? std::clamp(
       ((robot_x - a.x) * dx + (robot_y - a.y) * dy) / (length * length), 0.0, max_t) : 0.0;
     const State candidate = interpolate(a, b, t);
@@ -525,10 +532,11 @@ std::vector<State> IGOController::makeReference(
     if (distance < best) {
       best = distance;
       nearest = i;
+      nearest_fraction = t;
       projected = candidate;
     }
-    walked += length;
-    if (walked >= max_robot_pose_search_dist_) {
+    remaining -= length;
+    if (remaining <= 0.0) {
       break;
     }
   }
@@ -536,6 +544,7 @@ std::vector<State> IGOController::makeReference(
     throw nav2_core::InvalidPath("IGO robot is too far from the ordered reference path");
   }
   cursor_ = nearest;
+  cursor_fraction_ = nearest_fraction;
   std::vector<State> reference{projected};
   double length = 0.0;
   terminal = nearest == transformed.size() - 1;
